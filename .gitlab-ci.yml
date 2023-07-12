@@ -1,6 +1,7 @@
 include:
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Jobs/SAST.gitlab-ci.yml
+  - template: Security/Container-Scanning.gitlab-ci.yml
   
 default:
   tags:
@@ -14,6 +15,10 @@ stages:
 
 variables:
   IMAGE_NAME: "${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}"
+
+container_scanning:
+  variables:
+    CS_IMAGE: $IMAGE_NAME
 
 kaniko-build:
   image:
