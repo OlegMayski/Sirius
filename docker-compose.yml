@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    image: hello
+    ports:
+      - "8080:80"
+    environment:
+      PYTHONPYCACHEPREFIX: /tmp
+  
+  tests:
+    build: .
+    image: hello
+    command: pytest
+    environment:
+      PYTHONPYCACHEPREFIX: /tmp
+    profiles: [ "tests" ]
