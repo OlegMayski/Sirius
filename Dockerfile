@@ -1,4 +1,4 @@
-FROM registry.s.rosatom.education/sirius/docker/ubuntu:20.05
+FROM registry.s.rosatom.education/sirius/docker/ubuntu:20.04
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
