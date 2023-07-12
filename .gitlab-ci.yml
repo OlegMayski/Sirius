@@ -53,6 +53,20 @@ deploy_deploy:
     url: http://$APP_ADDRESS:$APP_PORT
     on_stop: deploy_stop
 
+dast-scan:
+  stage: deploy
+  image:
+    name: owasp/zap2docker-stable
+  when: manual
+  script:
+    - mkdir -p /zap/wrk
+    - zap-full-scan.py -t "http://$APP_ADDRESS:$APP_PORT" -I -J zap.json
+    - cp /zap/wrk/zap.json .
+  artifacts:
+    when: always
+    paths:
+      - zap.json
+
 deploy_stop:
   tags:
     - shell
