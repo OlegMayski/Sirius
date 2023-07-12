@@ -1,5 +1,6 @@
 include:
   - template: Security/Secret-Detection.gitlab-ci.yml
+  - template: Jobs/SAST.gitlab-ci.yml
   
 default:
   tags:
