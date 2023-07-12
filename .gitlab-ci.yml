@@ -38,6 +38,16 @@ test_container:
   script:
     - pytest
 
+trivy_scan:
+  stage: test
+  tags:
+    - shell  
+  script:
+    - trivy image --output trivy.txt $IMAGE_NAME
+  artifacts:
+    paths:
+      - trivy.txt
+
 deploy_deploy:
   tags:
     - shell
