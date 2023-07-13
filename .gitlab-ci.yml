@@ -42,7 +42,7 @@ test_container:
     entrypoint: [""]
   script:
     - pytest
-    
+
 pylint:
   stage: test
   image: python:3.11-alpine
@@ -98,7 +98,7 @@ dast-scan:
 
 deploy_stop:
   tags:
-    - shell
+    - docker
   stage: deploy
   script:
     - docker stop ${CONTAINER_NAME} || true
