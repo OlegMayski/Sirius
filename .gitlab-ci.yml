@@ -69,7 +69,7 @@ trivy_scan:
 
 deploy_deploy:
   tags:
-    - shell
+    - docker
   stage: deploy
   script:
     - docker stop ${CONTAINER_NAME} || true
