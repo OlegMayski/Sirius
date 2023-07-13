@@ -1,4 +1,9 @@
-FROM registry.s.rosatom.education/sirius/docker/python:3.11-alpine
+FROM registry.s.rosatom.education/sirius/docker/ubuntu:22.04
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    python3 python3-pip python3-setuptools && \
+    rm -rf /var/cache/apt/archives/*
 
 ADD ./app/requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt

@@ -48,10 +48,11 @@ trivy_scan:
   tags:
     - shell  
   script:
-    - trivy image --output trivy.txt $IMAGE_NAME
+    - trivy image --exit-code 1 --output trivy.txt $IMAGE_NAME
   artifacts:
     paths:
       - trivy.txt
+    when: on_failure
 
 deploy_deploy:
   tags:
