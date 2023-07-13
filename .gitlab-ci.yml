@@ -42,6 +42,19 @@ test_container:
     entrypoint: [""]
   script:
     - pytest
+    
+pylint:
+  stage: test
+  image: python:3.11-alpine
+  before_script:
+    - pip install pylint-gitlab
+  script:
+    - pylint --exit-zero --output-format=pylint_gitlab.GitlabCodeClimateReporter $(find -type f -name "*.py") > codeclimate.json
+  artifacts:
+    reports:
+      codequality: codeclimate.json
+    when: always
+
 
 trivy_scan:
   stage: test
